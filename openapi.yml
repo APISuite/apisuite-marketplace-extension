@@ -1,0 +1,134 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: APISuite Marketplace Extension
+  description: APISuite Marketplace Extension REST API
+  license:
+    name: MPL-2.0
+paths:
+  /health:
+    get:
+      tags: [ system ]
+      summary: Healthcheck endpoint
+      description: >
+        Checks the general health status of the app servers.
+        This usually means verifying connectivity to external dependencies.
+      responses:
+        '200':
+          description: Healthcheck result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+        '500':
+          $ref: '#/components/responses/Internal'
+  /metrics:
+    get:
+      tags: [ system ]
+      summary: System metrics for Prometheus scraping
+      responses:
+        '200':
+          description: Prometheus metrics
+          content:
+            text/plain:
+              schema:
+                type: string
+  /users/{id}/subscriptions:
+    get:
+      tags: [ users ]
+      description: List a user's subscribed apps
+      security:
+        - cookieAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Subscriptions list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subscription'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        description:
+          type: string
+        logo:
+          type: string
+        publisherId:
+          type: number
+        publisherName:
+          type: string
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+        time:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Internal:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: access_token
