@@ -45,4 +45,4 @@ Knex.js CLI is used for migration management: http://knexjs.org/#Migrations
 
 ### How to use
 
-Generate a migration: `npx knex migrate:make --migrations-directory ./migrations create-table -x ts`
+Generate a migration: `npx knex migrate:make --migrations-directory ./migrations create-table`

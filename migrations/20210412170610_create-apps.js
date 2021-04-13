@@ -1,6 +1,4 @@
-import { Knex } from 'knex'
-
-export async function up(knex: Knex): Promise<void> {
+exports.up = async function(knex) {
   await knex.raw(`
     CREATE TABLE IF NOT EXISTS apps (
         id INTEGER PRIMARY KEY,
@@ -21,6 +19,7 @@ export async function up(knex: Knex): Promise<void> {
   `)
 }
 
-export async function down(knex: Knex): Promise<void> {
+exports.down = function(knex) {
   return knex.raw('DROP TABLE IF EXISTS apps;')
 }
+

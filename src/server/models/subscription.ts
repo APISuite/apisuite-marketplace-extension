@@ -23,7 +23,7 @@ const getUserSubscriptions = async(trx: OptTransaction, userId: number): Promise
     .join('apps', 'subscriptions.app_id', 'apps.id')
     .where('subscriptions.user_id', userId)
 
-  return rows[0]
+  return rows
 }
 
 const create = async (trx: OptTransaction, sub: Subscription): Promise<Subscription> => {

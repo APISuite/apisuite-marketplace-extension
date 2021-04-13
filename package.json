@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "ts-node dist/index.js",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
+    "dev-server": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/server/index.ts",
     "lint": "eslint 'src/**/*.ts'",
     "build": "tsc -p .",
     "test": "LOG_LEVEL=silent mocha -r ts-node/register src/**/*.spec.ts",

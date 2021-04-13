@@ -10,7 +10,7 @@ import { version } from '../../package.json'
 import { introspect, error } from './middleware/'
 import {
   UsersController,
-  BaseController,
+  BaseController, HealthController,
 } from './controllers'
 
 export default class App {
@@ -61,6 +61,7 @@ export default class App {
 
   private initControllers(): Array<BaseController> {
     return [
+      new HealthController(),
       new UsersController(),
     ]
   }

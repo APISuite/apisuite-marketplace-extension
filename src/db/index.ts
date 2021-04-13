@@ -25,9 +25,10 @@ export const db = knex({
   searchPath: ['knex', 'public'],
   wrapIdentifier: (value, origImpl) => origImpl(camelToSnakeCase(value)),
   postProcessResponse: (result) => {
-    // TODO: add special case for raw results (depends on dialect)
+    if (result && typeof result === 'object' && result.hasOwnProperty('command')) return result
+
     if (Array.isArray(result)) {
-      return result.map(row => snakeToCamelCase(row))
+      return result.map((row) => snakeToCamelCase(row))
     }
     return snakeToCamelCase(result)
   },
