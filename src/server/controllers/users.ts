@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express'
 import { AsyncHandlerResponse } from '../types'
 import { BaseController } from './base'
-import { subscription as subsRepo } from '../models'
+import { subscription as subsRepo } from '../../models'
 import { authenticated, isSelf, asyncWrap as aw } from '../middleware/'
 
 export class UsersController implements BaseController {

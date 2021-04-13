@@ -53,7 +53,7 @@ export const schema = {
     queue: {
       doc: 'APISuite Message Broker Events Queue',
       format: String,
-      default: 'activity-log',
+      default: 'marketplace-apps',
       env: 'RABBITMQ_QUEUE',
     },
   },

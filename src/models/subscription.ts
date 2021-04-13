@@ -1,17 +1,9 @@
-import { db, OptTransaction } from '../../db'
+import { db, OptTransaction } from '../db'
+import { App } from './app'
 
 export interface Subscription {
   userId: number
   appId: number
-}
-
-export interface App {
-  id: number
-  name: string
-  description: string
-  logo: string
-  publisherId: number
-  publisherName: string
 }
 
 const getUserSubscriptions = async(trx: OptTransaction, userId: number): Promise<App[]> => {
@@ -36,10 +28,7 @@ const create = async (trx: OptTransaction, sub: Subscription): Promise<Subscript
     .ignore()
     .returning('*')
 
-  return {
-    userId: rows[0].user_id,
-    appId: rows[0].app_id,
-  }
+  return rows[0]
 }
 
 const deleteSubscription = async (trx: OptTransaction, sub: Subscription): Promise<void> => {

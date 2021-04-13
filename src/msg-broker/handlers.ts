@@ -1,15 +1,22 @@
-const handleLogEntry = async (event: string, msg: any): Promise<void> => {
-  return
-  // if (!msg.timestamp) return
-  //
-  // await db.writeEntry({
-  //   type: event,
-  //   userID: msg.user_id,
-  //   appID: msg.app_id,
-  //   organizationID: msg.organization_id,
-  //   log: msg.log,
-  //   timestamp: msg.timestamp,
-  // })
+import {
+  App,
+  create,
+  update,
+  deleteApp,
+} from '../models/app'
+
+export const handleAppCreate = async (app: App): Promise<void> => {
+  await create(null, app)
 }
 
-export default { handleLogEntry }
+export const handleAppUpdate = async (app: App): Promise<void> => {
+  await update(null, app.id, {
+    name: app.name,
+    description: app.description,
+    logo: app.logo,
+  })
+}
+
+export const handleAppDelete = async (appId: string): Promise<void> => {
+  await deleteApp(null, appId)
+}

@@ -1,3 +1,3 @@
-import setupMsgBroker from '../msg-broker'
+import * as msgBroker from '../msg-broker'
 
-setupMsgBroker()
+msgBroker.init()

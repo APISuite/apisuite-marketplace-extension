@@ -1,3 +1,4 @@
+import camelCaseKeys from 'camelcase-keys'
 import knex, { Knex } from 'knex'
 import config from '../config'
 
@@ -9,28 +10,21 @@ const camelToSnakeCase = (str: string): string => {
     )
 }
 
-const snakeToCamelCase = (str: string) => {
-  return str
-    .replace(
-      /([-_][a-z])/g,
-      (group) => group
-        .toUpperCase()
-        .replace('_', '')
-    )
-}
-
 export const db = knex({
   client: 'pg',
   connection: config.get('dbURI'),
   searchPath: ['knex', 'public'],
   wrapIdentifier: (value, origImpl) => origImpl(camelToSnakeCase(value)),
   postProcessResponse: (result) => {
-    if (result && typeof result === 'object' && Object.prototype.hasOwnProperty.call(result, 'command')) return result
+    if (result && typeof result === 'object' && Object.prototype.hasOwnProperty.call(result, 'command')) {
+      return camelCaseKeys(result)
+    }
 
     if (Array.isArray(result)) {
-      return result.map((row) => snakeToCamelCase(row))
+      return result.map((row) => camelCaseKeys(row))
     }
-    return snakeToCamelCase(result)
+
+    return result
   },
 })
 
