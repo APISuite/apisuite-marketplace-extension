@@ -38,7 +38,7 @@ describe('users controller', () => {
         description: 'lorem ipsum',
         logo: 'logoURLhere',
         publisherId: 999,
-        publisherName: 'acme'
+        publisherName: 'acme',
       }])
 
       request(testApp)

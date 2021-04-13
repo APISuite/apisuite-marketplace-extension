@@ -1,8 +1,8 @@
 import { db, OptTransaction } from '../../db'
 
 export interface Subscription {
-  userId: string
-  appId: string
+  userId: number
+  appId: number
 }
 
 export interface App {

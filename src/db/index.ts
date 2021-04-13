@@ -25,7 +25,7 @@ export const db = knex({
   searchPath: ['knex', 'public'],
   wrapIdentifier: (value, origImpl) => origImpl(camelToSnakeCase(value)),
   postProcessResponse: (result) => {
-    if (result && typeof result === 'object' && result.hasOwnProperty('command')) return result
+    if (result && typeof result === 'object' && Object.prototype.hasOwnProperty.call(result, 'command')) return result
 
     if (Array.isArray(result)) {
       return result.map((row) => snakeToCamelCase(row))
