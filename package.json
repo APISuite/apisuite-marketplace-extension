@@ -2,9 +2,9 @@
   "name": "apisuite-marketplace-extension",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node dist/index.js",
+    "start-server": "ts-node dist/src/server/index.js",
+    "start-consumer": "ts-node dist/src/consumer/index.js",
     "dev-server": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/server/index.ts",
     "dev-consumer": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/consumer/index.ts",
     "lint": "eslint 'src/**/*.ts'",
