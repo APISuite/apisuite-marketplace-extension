@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "server": "ts-node dist/src/server/index.js",
-    "consumer": "ts-node dist/src/consumer/index.js",
+    "consumer": "ts-node dist/src/msg-broker/index.js",
     "dev-server": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/server/index.ts",
     "dev-consumer": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/msg-broker/index.ts",
     "lint": "eslint 'src/**/*.ts'",
