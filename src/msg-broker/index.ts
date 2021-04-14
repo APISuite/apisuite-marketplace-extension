@@ -22,6 +22,7 @@ const onMessage = (data: amqplib.ConsumeMessage | null): void => {
       case routingKeys.APP_CREATED: {
         if (!msg || !msg.app_id || !msg.meta) {
           log.warn('could not create app', msg)
+          break
         }
         const meta = msg.meta
         handleAppCreate({
@@ -37,6 +38,7 @@ const onMessage = (data: amqplib.ConsumeMessage | null): void => {
       case routingKeys.APP_UPDATED: {
         if (!msg || !msg.app_id || !msg.meta) {
           log.warn('could not update app', msg)
+          break
         }
         const meta = msg.meta
         handleAppUpdate({
@@ -52,6 +54,7 @@ const onMessage = (data: amqplib.ConsumeMessage | null): void => {
       case routingKeys.APP_DELETED: {
         if (!msg || !msg.app_id) {
           log.warn('could not delete app', msg)
+          break
         }
         handleAppDelete(msg.app_id).catch()
         break
