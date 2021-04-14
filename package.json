@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start-server": "ts-node dist/src/server/index.js",
-    "start-consumer": "ts-node dist/src/consumer/index.js",
+    "server": "ts-node dist/src/server/index.js",
+    "consumer": "ts-node dist/src/consumer/index.js",
     "dev-server": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/server/index.ts",
-    "dev-consumer": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/consumer/index.ts",
+    "dev-consumer": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/msg-broker/index.ts",
     "lint": "eslint 'src/**/*.ts'",
     "build": "tsc -p .",
     "test": "LOG_LEVEL=silent mocha -r ts-node/register src/**/*.spec.ts",

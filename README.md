@@ -2,6 +2,26 @@
 
 This repository contains an extension to APISuite Core that provides a backend for the marketplace feature.
 
+## How it works
+
+There are 2 components in this extension that should be executed separately (for isolation/scaling purposes)
+
+#### Web Server
+
+Starts with `npm run server`.
+
+Serves a REST API, documented in `openapi.yml`.
+
+#### Message Consumer
+
+Starts with `npm run consumer`.
+
+Consumes application related events from APISuite's message broker.
+
+Marketplace interactions need some information about the applications in APISuite.
+Therefore, this component keeps the database in sync with the core when it comes to some applications' data.
+
+
 ## Installing
 
 Docker images are available in our [DockerHub](https://hub.docker.com/r/cloudokihub/apisuite-billing-extension).

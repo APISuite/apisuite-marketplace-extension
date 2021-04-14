@@ -24,7 +24,7 @@ const create = async (trx: OptTransaction, sub: Subscription): Promise<Subscript
   const rows = await _db
     .insert(sub)
     .into('subscriptions')
-    .onConflict()
+    .onConflict(['user_id', 'app_id'])
     .ignore()
     .returning('*')
 
