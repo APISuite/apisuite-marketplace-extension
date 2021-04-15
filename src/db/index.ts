@@ -11,7 +11,7 @@ const camelToSnakeCase = (str: string): string => {
 }
 
 export const db = knex({
-  debug: true,
+  debug: config.get('knexDebug'),
   client: 'pg',
   connection: config.get('dbURI'),
   searchPath: ['knex', 'public'],
