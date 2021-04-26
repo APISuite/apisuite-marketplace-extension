@@ -62,7 +62,8 @@ const isPublicApp = (meta: AppMeta): boolean => {
 const appMetaToInternal = (meta: AppMeta): App => ({
   id: Number(meta.id),
   name: meta.name,
-  description: meta.shortDescription,
+  shortDescription: meta.shortDescription,
+  description: meta.description,
   logo: meta.logo,
   publisherId: Number(meta.org.id),
   publisherName: meta.org.name,

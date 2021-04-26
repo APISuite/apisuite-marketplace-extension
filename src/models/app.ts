@@ -4,6 +4,7 @@ export interface App {
   id: number
   name: string
   description: string
+  shortDescription: string
   logo: string
   publisherId: number
   publisherName: string

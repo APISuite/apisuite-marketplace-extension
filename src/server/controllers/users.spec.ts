@@ -35,6 +35,7 @@ describe('users controller', () => {
       sinon.stub(subsRepo, 'getUserSubscriptions').resolves([{
         id: 10,
         name: 'acme app',
+        shortDescription: 'shorty',
         description: 'lorem ipsum',
         logo: 'logoURLhere',
         publisherId: 999,
