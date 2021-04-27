@@ -137,6 +137,8 @@ components:
           type: string
         description:
           type: string
+        shortDescription:
+          type: string
         logo:
           type: string
         publisherId:
