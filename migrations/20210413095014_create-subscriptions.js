@@ -4,7 +4,7 @@ exports.up = function(knex) {
         user_id INTEGER NULL,
         app_id INTEGER NULL,
         UNIQUE(user_id, app_id),
-        CONSTRAINT fk_user
+        CONSTRAINT fk_app
           FOREIGN KEY(app_id)
           REFERENCES apps(id)
           ON DELETE CASCADE
