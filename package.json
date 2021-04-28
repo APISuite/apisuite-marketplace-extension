@@ -1,6 +1,6 @@
 {
   "name": "apisuite-marketplace-extension",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "",
   "scripts": {
     "server": "ts-node dist/src/server/index.js",
