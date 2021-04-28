@@ -91,7 +91,7 @@ export const onMessage = (data: amqplib.ConsumeMessage | null): void => {
         break
       }
       case routingKeys.APP_DELETED: {
-        if (!validateAppMessage(msg)) {
+        if (!msg || !msg.app_id) {
           log.warn('could not delete app', msg)
           break
         }
