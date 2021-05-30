@@ -5,6 +5,13 @@ info:
   description: APISuite Marketplace Extension REST API
   license:
     name: MPL-2.0
+
+tags:
+  - name: system
+    description: System metrics and observability
+  - name: users
+    description: User related actions and operations
+
 paths:
   /health:
     get:
@@ -25,7 +32,8 @@ paths:
   /metrics:
     get:
       tags: [ system ]
-      summary: System metrics for Prometheus scraping
+      summary: System metrics
+      description: System metrics served in Prometheus readable format
       responses:
         '200':
           description: Prometheus metrics
@@ -36,6 +44,7 @@ paths:
   /users/{id}/subscriptions:
     get:
       tags: [ users ]
+      summary: Get user's apps
       description: List a user's subscribed apps
       security:
         - cookieAuth: [ ]
@@ -67,6 +76,7 @@ paths:
   /users/{id}/subscriptions/{appId}:
     post:
       tags: [ users ]
+      summary: Subscribe user to app
       description: Subscribe user to app
       security:
         - cookieAuth: [ ]
@@ -101,6 +111,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       tags: [ users ]
+      summary: Unsubscribe user from app
       description: Unsubscribe user from app
       security:
         - cookieAuth: [ ]
@@ -120,12 +131,7 @@ paths:
       responses:
         '204':
           description: No content
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
+
 components:
   schemas:
     Subscription:

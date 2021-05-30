@@ -8,6 +8,7 @@
     "dev-server": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/server/index.ts",
     "dev-consumer": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/msg-broker/index.ts",
     "lint": "eslint 'src/**/*.ts'",
+    "lint-api": "spectral lint openapi.yml --ruleset=/Users/simoes/dev/cloudoki/openapi-style-guide/spec.yaml",
     "build": "tsc -p .",
     "test": "LOG_LEVEL=silent mocha -r ts-node/register src/**/*.spec.ts",
     "migrate": "knex migrate:latest --client pg --migrations-directory ./migrations --connection \"$DB_URI\""
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@semantic-release/git": "^9.0.0",
+    "@stoplight/spectral": "^5.9.1",
     "@types/amqp-connection-manager": "^2.0.10",
     "@types/amqplib": "^0.5.17",
     "@types/chai": "^4.2.15",
