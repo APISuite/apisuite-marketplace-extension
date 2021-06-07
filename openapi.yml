@@ -131,7 +131,55 @@ paths:
       responses:
         '204':
           description: No content
-
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users/{id}/history/{appId}:
+    post:
+      tags: [ users ]
+      summary: Record app execution history
+      description: Records the execution/usage of an application by a user, with the possibility to store metadata
+      security:
+        - cookieAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: number
+        - name: appId
+          in: path
+          description: App ID
+          required: true
+          schema:
+            type: number
+      requestBody:
+        description: Application execution metadata.
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Subscribed app id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/HistoryRecord'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
 components:
   schemas:
     Subscription:
@@ -151,6 +199,15 @@ components:
           type: number
         publisherName:
           type: string
+    HistoryRecord:
+      type: object
+      properties:
+        userId:
+          type: number
+        appId:
+          type: number
+        metadata:
+          type: object
     Health:
       type: object
       properties:
