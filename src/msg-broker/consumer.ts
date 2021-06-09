@@ -56,7 +56,7 @@ const validateOrgMessage = (msg: OrgMessage): boolean => {
 }
 
 const isPublicApp = (meta: AppMeta): boolean => {
-  return meta.visibility === 'public' && meta.state === 'approved'
+  return meta.visibility === 'public'
 }
 
 const appMetaToInternal = (meta: AppMeta): App => ({
@@ -79,6 +79,7 @@ export const onMessage = (data: amqplib.ConsumeMessage | null): void => {
     const msg = JSON.parse(data.content.toString())
 
     switch (data.fields.routingKey) {
+      case routingKeys.APP_CREATED:
       case routingKeys.APP_REQUESTED:
       case routingKeys.APP_UPDATED: {
         if (!validateAppMessage(msg)) {
