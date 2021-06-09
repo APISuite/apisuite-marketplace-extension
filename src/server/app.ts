@@ -3,9 +3,11 @@ import express, {
   Request,
   Response,
 } from 'express'
+import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import promBundle from 'express-prom-bundle'
+import config from '../config'
 import { version } from '../../package.json'
 import { introspect, error } from './middleware/'
 import {
@@ -27,6 +29,7 @@ export default class App {
   }
 
   private setupMiddleware(): void {
+    this.app.use(cors(config.get('cors')))
     this.app.use(helmet())
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
