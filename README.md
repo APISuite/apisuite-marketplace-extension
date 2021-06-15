@@ -1,5 +1,7 @@
 # API Suite - Marketplace Extension
 
+[![circleci](https://circleci.com/gh/APISuite/apisuite-marketplace-extension.svg?style=shield)](https://app.circleci.com/pipelines/github/APISuite/apisuite-marketplace-extension)
+
 This repository contains an extension to APISuite Core that provides a backend for the marketplace feature.
 
 ## How it works
