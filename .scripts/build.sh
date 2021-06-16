@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo $OLD_VERSION
+echo $NEW_VERSION
+
 cmp -s .orig_version .new_version
 CMP=$?
 
