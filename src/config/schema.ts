@@ -6,7 +6,7 @@ export const schema = {
     env: 'NODE_ENV',
   },
   port: {
-    doc: 'Server listen port',
+    doc: 'Port the webs server will listen on',
     format: Number,
     default: 6008,
     env: 'API_PORT',
@@ -19,19 +19,19 @@ export const schema = {
   },
   cors: {
     origin: {
-      doc: 'Access-Control-Allow-Origin',
+      doc: 'Sets the Access-Control-Allow-Origin header value. This should usually be the portal URL.',
       format: Array,
       default: ['http://localhost:6001'],
       env: 'CORS_ALLOW_ORIGIN',
     },
     credentials: {
-      doc: 'Access-Control-Allow-Credentials',
+      doc: 'Sets the Access-Control-Allow-Credentials header value',
       format: Boolean,
       default: true,
       env: 'CORS_ALLOW_CREDENTIALS',
     },
     methods: {
-      doc: 'Access-Control-Allow-Methods',
+      doc: 'Sets the Access-Control-Allow-Methods header value',
       format: String,
       default: 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
       env: 'CORS_ALLOW_METHODS',
@@ -44,14 +44,14 @@ export const schema = {
     env: 'DB_URI',
   },
   knexDebug: {
-    doc: 'Knex.js debug flag',
+    doc: 'Knex.js debug flag (https://knexjs.org/#Builder-debug)',
     format: Boolean,
     default: false,
     env: 'KNEX_DEBUG',
   },
   apisuite: {
     api: {
-      doc: 'APISuite API url',
+      doc: 'APISuite core API url',
       format: String,
       default: 'http://localhost:6001',
       env: 'APISUITE_API_URL',

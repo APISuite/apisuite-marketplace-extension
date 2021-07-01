@@ -35,17 +35,32 @@ Every new image is tagged with:
 Depending on your goals, you could use a fixed version like `1.0.0` or
 `latest` to simply get the most recent version every time you pull the image.
 
+## Configuration
+
+Configuration is done through environment variables.
+All variables are declared and documented in `src/config/schema.js`.
+
+### Sample Configuration
+
+Usually, at a minimum, these are the variables that need to be configured.
+
+This ensures connectivity to the core's API and RabbitMQ instance, as well as proper CORS configuration to accept requests from the desired origin.
+```
+APISUITE_API_URL=http://apisuite-core-api:6001
+CORS_ALLOW_ORIGIN=https://my.dev.portal.com
+DB_URI=postgres://db_user:p4ssw0rd@dbserver:5432/marketplace_db 
+
+MSG_BROKER_URL=amqp://apisuite:RW8zBFj2b3KAAwWr2xgu@apisuite-msg-broker:5672
+RABBITMQ_EVENTS_EXCHANGE=apisuite_events_dev
+RABBITMQ_QUEUE=marketplace-apps-queue
+```
+
+
 ## Monitoring
 
 Thi API server provides two monitoring endpoints:
 - `GET /health` for general health checking (of the server and major dependencies such as database connection)
 - `GET /metrics` provides Prometheus ready metrics concerning requests time and status codes
-
-### Configuration
-
-Configuration is done through environment variables.
-All variables are declared and documented in `src/config/schema.js`.
-
 
 ## Development
 
