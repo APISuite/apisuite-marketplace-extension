@@ -12,4 +12,6 @@ RUN npm install --only=production && npm install ts-node
 COPY --from=build_phase /usr/src/app/dist ./dist
 COPY --from=build_phase /usr/src/app/migrations ./migrations
 
+USER node
+
 ENTRYPOINT ["npm", "run"]
