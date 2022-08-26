@@ -38,8 +38,12 @@ export const introspect = async (req: Request, res: Response, next: NextFunction
       if (!response || response.status !== 200) {
         return res.status(401).json({ errors: ['invalid authentication cookie'] })
       }
-
       res.locals.authenticatedUser = await response.json()
+
+      if (res.locals.authenticatedUser.plan != 'full' && !res.locals.authenticatedUser.plan.marketplace) {
+        return res.status(403).json({data: 'Exceeded the number allowed by Subscribed Plan '})
+      }
+
     } catch (err) {
       log.error(err, '[introspect]')
       return res.status(500).json({ errors: ['could not introspect'] })
@@ -60,6 +64,9 @@ export const authenticated = (req: Request, res: Response, next: NextFunction): 
 }
 
 export const isSelf = (req: Request, res: Response, next: NextFunction): HandlerResponse => {
+  console.log(JSON.stringify(res.locals.authenticatedUser))
+  console.log(JSON.stringify(req.params))
+
   if (Number(res.locals.authenticatedUser.id) !== Number(req.params.id)) {
     return res.status(403).json({ errors: ['forbidden'] })
   }
