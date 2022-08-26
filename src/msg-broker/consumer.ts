@@ -81,6 +81,7 @@ export const onMessage = (data: amqplib.ConsumeMessage | null): void => {
     switch (data.fields.routingKey) {
       case routingKeys.APP_CREATED:
       case routingKeys.APP_REQUESTED:
+      case routingKeys.APP_REVOKED:
       case routingKeys.APP_UPDATED: {
         if (!validateAppMessage(msg)) {
           log.warn('could not update app', msg)
