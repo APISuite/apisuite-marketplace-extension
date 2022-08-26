@@ -64,11 +64,8 @@ export const authenticated = (req: Request, res: Response, next: NextFunction): 
 }
 
 export const isSelf = (req: Request, res: Response, next: NextFunction): HandlerResponse => {
-  console.log(JSON.stringify(res.locals.authenticatedUser))
-  console.log(JSON.stringify(req.params))
-
   if (Number(res.locals.authenticatedUser.id) !== Number(req.params.id)) {
-    return res.status(403).json({ errors: ['forbidden'] })
+    return res.status(403).json({ errors: ['forbidden - could not introspect' + JSON.stringify(res.locals.authenticatedUser)] })
   }
 
   next()
