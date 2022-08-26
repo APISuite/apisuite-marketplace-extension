@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 echo $OLD_VERSION
 echo $NEW_VERSION
 
