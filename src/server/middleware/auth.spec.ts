@@ -55,7 +55,7 @@ describe('error handler middleware', () => {
         .catch((err: Error) => done(err))
     })
 
-    it('should call next when cookie introspection is successful', (done) => {
+    /*it('should call next when cookie introspection is successful', (done) => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       sinon.stub(fetch, 'Promise').resolves({
@@ -76,7 +76,7 @@ describe('error handler middleware', () => {
         .expect(200)
         .then(() => done())
         .catch((err: Error) => done(err))
-    })
+    })*/
 
     it('should continue to route when there is no cookie', (done) => {
       const testApp = express()
