@@ -40,7 +40,7 @@ export const introspect = async (req: Request, res: Response, next: NextFunction
       }
       res.locals.authenticatedUser = await response.json()
 
-      if (res.locals.authenticatedUser.plan != 'full' && !res.locals.authenticatedUser.plan.marketplace) {
+      if (res.locals.authenticatedUser.type != 'full' && !res.locals.authenticatedUser.plan.marketplace) {
         return res.status(403).json({data: 'Exceeded the number allowed by Subscribed Plan '})
       }
 
